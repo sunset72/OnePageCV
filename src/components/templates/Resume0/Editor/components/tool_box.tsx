@@ -23,7 +23,7 @@ export const ToolBox = ({
 
   const handleChooseTemplate = (e: number) => {
     console.log(e)
-    const templateData = templatesArr.find((item: any) => item.value == e)
+    const templateData = templatesArr.find((item: any) => item.value === e)
     // const docStyle = document.documentElement.style
     // const isEn = e === 1
     // docStyle.setProperty("font-family", isEn?'"Times New Roman", Times, serif':'')

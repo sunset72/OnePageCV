@@ -29,9 +29,9 @@ const LineItem = ({
     const value = []
     value.push(info.value[0])
     value[0].type = 'div'
-    if (e == 1) {
-      value.push(info.value.length == 2 ? info.value[1] : { className: 'line-normal', value: '' })
-    } else if (e == 2) {
+    if (e === '1') {
+      value.push(info.value.length === 2 ? info.value[1] : { className: 'line-normal', value: '' })
+    } else if (e === '2') {
       value[0].type = 'li'
     }
     const res = {

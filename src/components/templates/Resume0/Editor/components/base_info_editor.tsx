@@ -25,32 +25,39 @@ export const BaseInfoEditor = ({
   const [infoList, setInfoList] = useState(baseInfo.infoList)
 
   useEffect(() => {
-    submit()
+    setUsername(baseInfo.name)
+    setPhoto(baseInfo.photo)
+    setSchoolLogo(baseInfo.schoolLogo)
+    setInfoList(baseInfo.infoList)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, photo, schoolLogo, infoList])
+  }, [baseInfo])
 
   const addInfoLine = () => {
     const temp = [...infoList]
     temp.push('')
     setInfoList(temp)
+    onBaseInfoSubmit({ ...baseInfo, infoList: temp })
   }
 
   const removeInfoLine = (idx: number) => {
     const temp = [...infoList]
     temp.splice(idx, 1)
     setInfoList(temp)
+    onBaseInfoSubmit({ ...baseInfo, infoList: temp })
   }
 
 
   const uploadPhoto = (file: any) => {
     // URL.createObjectURL()
-    setPhoto(URL.createObjectURL(file))
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onload = () => {
-    //   const base64Str = reader.result;
-    //   setPhoto(base64Str)
-    // };
+    // setPhoto(URL.createObjectURL(file))
+    // onBaseInfoSubmit({ ...baseInfo, photo: URL.createObjectURL(file) })
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64Str = reader.result;
+      setPhoto(base64Str)
+      onBaseInfoSubmit({ ...baseInfo, photo: base64Str })
+    };
     return false
   };
 
@@ -60,10 +67,12 @@ export const BaseInfoEditor = ({
     reader.onload = () => {
       const base64Str = reader.result;
       setSchoolLogo(base64Str)
+      onBaseInfoSubmit({ ...baseInfo, schoolLogo: base64Str })
     };
     return false
   };
 
+  // eslint-disable-next-line
   const submit = () => {
     const baseInfo = {
       name: username,
@@ -90,12 +99,14 @@ export const BaseInfoEditor = ({
           <div className="item-name">姓名:</div>
           <Input style={{ flex: '1' }} onChange={(e) => {
             setUsername(e.target.value)
+            onBaseInfoSubmit({ ...baseInfo, name: e.target.value })
           }} placeholder="输入姓名" value={username} />
         </div>
         <div className="form-item">
           <div className="item-name">照片:</div>
           <Upload name="file" beforeUpload={uploadPhoto} listType="picture" maxCount={1} onRemove={() => {
             setPhoto(null)
+            onBaseInfoSubmit({ ...baseInfo, photo: null })
           }}>
             <Button icon={<UploadOutlined />}>点击上传</Button>
           </Upload>
@@ -104,6 +115,7 @@ export const BaseInfoEditor = ({
           <div className="item-name">校徽:</div>
           <Upload name="file" beforeUpload={uploadSchoolLogo} listType="picture" maxCount={1} onRemove={() => {
             setSchoolLogo(null)
+            onBaseInfoSubmit({ ...baseInfo, schoolLogo: null })
           }}>
             <Button icon={<UploadOutlined />}>点击上传</Button>
           </Upload>
@@ -118,6 +130,7 @@ export const BaseInfoEditor = ({
                   const temp = [...infoList]
                   temp[index] = value
                   setInfoList(temp)
+                  onBaseInfoSubmit({ ...baseInfo, infoList: temp })
                 }}
                   value={item}
                   placeholder="信息行" />

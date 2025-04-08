@@ -7,7 +7,7 @@ const defaultExperiences = [
         className: 'line-two-sides',
         value: [
           {
-            className: 'bold-text',
+            className: 'line-normal',
             value: '浙江大学',
           },
           {
@@ -47,7 +47,7 @@ const defaultExperiences = [
         className: 'line-two-sides',
         value: [
           {
-            className: 'bold-text',
+            className: 'line-normal',
             value: '西北工业大学',
           },
           {
@@ -93,7 +93,7 @@ const defaultExperiences = [
         className: 'line-two-sides',
         value: [
           {
-            className: 'bold-text',
+            className: 'line-normal',
             value: '华为技术有限公司',
           },
           {
@@ -130,7 +130,7 @@ const defaultExperiences = [
         className: 'line-two-sides',
         value: [
           {
-            className: 'bold-text',
+            className: 'line-normal',
             value: '智慧校园招生项目',
           },
           {
@@ -182,7 +182,7 @@ const defaultExperiences = [
         className: 'line-two-sides',
         value: [
           {
-            className: 'bold-text',
+            className: 'line-normal',
             value: '全国大学生软件创新大赛官网',
           },
           {
